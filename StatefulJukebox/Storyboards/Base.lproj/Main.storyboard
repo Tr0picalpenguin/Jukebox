@@ -10,7 +10,7 @@
         <!--Playlists-->
         <scene sceneID="HMI-Um-Ok4">
             <objects>
-                <tableViewController id="tHX-gZ-E0B" sceneMemberID="viewController">
+                <tableViewController id="tHX-gZ-E0B" customClass="PlaylistTableViewController" customModule="StatefulJukebox" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="KEm-sL-gPA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,7 +34,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Glg-yU-6mc" detailTextLabel="PI6-I0-pmB" style="IBUITableViewCellStyleValue1" id="MBD-Ne-8aH">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="playlistCell" textLabel="Glg-yU-6mc" detailTextLabel="PI6-I0-pmB" style="IBUITableViewCellStyleValue1" id="MBD-Ne-8aH">
                                 <rect key="frame" x="0.0" y="102.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MBD-Ne-8aH" id="Qmo-mv-4Jp">
@@ -58,7 +58,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="DGp-q4-zf3" kind="show" id="Tqx-M8-krI"/>
+                                    <segue destination="DGp-q4-zf3" kind="show" identifier="toSongListTableViewController" id="Tqx-M8-krI"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -70,17 +70,24 @@
                     <navigationItem key="navigationItem" title="Playlists" id="f5a-a1-bIp">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="GWG-CT-Rih">
                             <color key="tintColor" systemColor="tintColor"/>
+                            <connections>
+                                <action selector="addPlaylistButtonTapped:" destination="tHX-gZ-E0B" id="k4j-Q0-l3z"/>
+                                <segue destination="DGp-q4-zf3" kind="show" id="I4N-Lh-D4o"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="enterPlaylistNameTextField" destination="2To-Ee-oOn" id="iMv-Lb-iHQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KxK-nd-s5v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1200" y="-3"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Song List Table View Controller-->
         <scene sceneID="Fgh-lO-s5U">
             <objects>
-                <tableViewController id="DGp-q4-zf3" sceneMemberID="viewController">
+                <tableViewController id="DGp-q4-zf3" customClass="SongListTableViewController" customModule="StatefulJukebox" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xic-Pq-JuO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,7 +121,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="7rP-G9-7jE" detailTextLabel="JBu-qO-kah" style="IBUITableViewCellStyleSubtitle" id="bbI-lv-RR5">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="songCell" textLabel="7rP-G9-7jE" detailTextLabel="JBu-qO-kah" style="IBUITableViewCellStyleSubtitle" id="bbI-lv-RR5">
                                 <rect key="frame" x="0.0" y="144.5" width="414" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bbI-lv-RR5" id="n61-1t-5aA">
@@ -171,6 +178,9 @@
             <point key="canvasLocation" x="479.71014492753625" y="-3.3482142857142856"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="I4N-Lh-D4o"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
